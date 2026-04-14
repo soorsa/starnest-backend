@@ -22,20 +22,26 @@ jobs:
           server: ftp.altismultiserviceslimited.com
           username: starnest_deploy@api.starnest.com.ng
           password: ${{ secrets.ftp_password }}
-          protocol: ftps # ← This is the key fix
-          # port: 21              # Usually not needed, defaults to 21 for FTPS
-          # Optional but recommended for Django:
-          local-dir: ./
-          server-dir: / # Change to your actual Python App root or public_html subfolder
+          protocol: ftps
+
+          # === Critical for Namecheap stability ===
+          passive: true
+          security: loose
+          concurrency: 3 # Lower concurrency to reduce timeout risk
+
+          # === Fixed exclude syntax (this is the main issue) ===
           exclude: |
             **/.git*
+            **/.git*/**
             **/.github*
-            **/__pycache__/*
+            **/.github*/**
+            **/__pycache__/**
             **/*.pyc
             **/*.pyo
-            staticfiles/
-            static/
+            **/staticfiles/**
+            **/static/**
+            **/media/**
             db.sqlite3
             .env
             *.log
-            media/
+            .ftp-deploy-sync-state.json
