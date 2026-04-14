@@ -1,18 +1,33 @@
 on:
   push:
     branches: [main]
+
 name: 🚀 Deploy website on push
+
 jobs:
   web-deploy:
     name: 🎉 Deploy
     runs-on: ubuntu-latest
+
+    # Add this to force Node 24 now (recommended)
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
     steps:
       - name: 🚚 Get latest code
         uses: actions/checkout@v4
 
-      - name: 📂 Sync files
+      - name: 📂 Sync files via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
           server: api.starnest.com.ng
           username: starnest_deploy@api.starnest.com.ng
           password: ${{ secrets.ftp_password }}
+          # Optional but useful for Django:
+          # local-dir: .                  # or your build/output folder
+          # server-dir: /public_html/your-django-folder/
+          # exclude: |
+          #   **/.git*
+          #   **/.github*
+          #   **/__pycache__/*
+          #   **/*.pyc
