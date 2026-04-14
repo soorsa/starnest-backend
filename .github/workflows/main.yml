@@ -26,4 +26,16 @@ jobs:
           # port: 21              # Usually not needed, defaults to 21 for FTPS
           # Optional but recommended for Django:
           local-dir: ./
-          server-dir: /home/altisbik/api.starnest.com.ng/ # Change to your actual Python App root or public_html subfolder
+          server-dir: / # Change to your actual Python App root or public_html subfolder
+          exclude: |
+            **/.git*
+            **/.github*
+            **/__pycache__/*
+            **/*.pyc
+            **/*.pyo
+            staticfiles/
+            static/
+            db.sqlite3
+            .env
+            *.log
+            media/
