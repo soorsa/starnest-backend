@@ -20,7 +20,7 @@ jobs:
         uses: airvzxf/ftp-deployment-action@latest
         with:
           server: ftp.altismultiserviceslimited.com
-          username: starnest_deploy@api.starnest.com.ng
+          user: starnest_deploy@api.starnest.com.ng
           password: ${{ secrets.ftp_password }}
           protocol: ftps
 
