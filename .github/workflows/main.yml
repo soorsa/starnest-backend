@@ -25,9 +25,12 @@ jobs:
           protocol: ftps
 
           # === Critical for Namecheap stability ===
+          timeout_minutes: 30
+          max_attempts: 3
+          retry_wait_seconds: 10
           passive: true
           security: loose
-          concurrency: 3 # Lower concurrency to reduce timeout risk
+          concurrency: 1 # Lower concurrency to reduce timeout risk
 
           # === Fixed exclude syntax (this is the main issue) ===
           exclude: |
