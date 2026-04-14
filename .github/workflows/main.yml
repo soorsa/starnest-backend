@@ -19,7 +19,7 @@ jobs:
       - name: 📂 Sync files via FTPS
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
-          server: api.starnest.com.ng
+          server: ftp.altismultiserviceslimited.com
           username: starnest_deploy@api.starnest.com.ng
           password: ${{ secrets.ftp_password }}
           protocol: ftps # ← This is the key fix
