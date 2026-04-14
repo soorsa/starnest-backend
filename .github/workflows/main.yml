@@ -9,7 +9,6 @@ jobs:
     name: 🎉 Deploy
     runs-on: ubuntu-latest
 
-    # Add this to force Node 24 now (recommended)
     env:
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
@@ -17,17 +16,14 @@ jobs:
       - name: 🚚 Get latest code
         uses: actions/checkout@v4
 
-      - name: 📂 Sync files via FTP
+      - name: 📂 Sync files via FTPS
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
           server: api.starnest.com.ng
           username: starnest_deploy@api.starnest.com.ng
           password: ${{ secrets.ftp_password }}
-          # Optional but useful for Django:
-          # local-dir: .                  # or your build/output folder
-          # server-dir: /public_html/your-django-folder/
-          # exclude: |
-          #   **/.git*
-          #   **/.github*
-          #   **/__pycache__/*
-          #   **/*.pyc
+          protocol: ftps # ← This is the key fix
+          # port: 21              # Usually not needed, defaults to 21 for FTPS
+          # Optional but recommended for Django:
+          local-dir: ./
+          server-dir: /home/altisbik/api.starnest.com.ng/ # Change to your actual Python App root or public_html subfolder
