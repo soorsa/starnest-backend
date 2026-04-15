@@ -6,6 +6,7 @@ from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
 router.register(r'plans', views.SavingPlanApiset, basename='saving')
+router.register(r'posts', views.PostApiViewSet, basename='post')
 router.register(r'user-plans', views.UserSavingApiset, basename='user-saving')
 router.register(r'transactions', views.TransactionApiset, basename='transactions')
 router.register(r'admin/users', views.UsersApiset, basename='users')

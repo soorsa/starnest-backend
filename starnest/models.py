@@ -113,3 +113,8 @@ class Transaction(models.Model):
     type = models.CharField(max_length=20, default="deposit", choices=TRANSACTION_TYPE)
     status = models.CharField(max_length=20, default="pending", choices=STATUS_CHOICE)
     created_at = models.DateTimeField(auto_now_add=True)
+
+class Post(models.Model):
+    title = models.CharField(max_length=200)
+    content = models.CharField(max_length=2000)
+    created_at = models.DateTimeField(auto_now_add=True)

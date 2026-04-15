@@ -189,3 +189,11 @@ class AdminStatsView(views.APIView):
             "total_amount_of_active_plans": total_amount_of_active_plans,
         }
         return Response(data)
+    
+class PostApiViewSet(viewsets.ModelViewSet):
+    permission_classes = [AllowAny]
+    serializer_class = PostSerializer
+    filter_backends = [DjangoFilterBackend, OrderingFilter]
+    filterset_fields = ["created_at", "title", "content"]
+    ordering_fields = ["created_at"]
+    queryset = Post.objects.all().order_by("created_at")

@@ -5,3 +5,4 @@ from .models import *
 admin.site.register(SavingPlan)
 admin.site.register(UserSavings)
 admin.site.register(Transaction)
+admin.site.register(Post)

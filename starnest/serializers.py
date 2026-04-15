@@ -59,3 +59,8 @@ class DetailedUserSerializer(serializers.ModelSerializer):
                  'total_recieveable', 'phone_number', 'profile_picture', 'date_of_birth', 'state','city', 'address', 'country',
                  'is_verified', 'created_at', 'deposits', 'withdrawals' )
         read_only_fields = ('id', 'email', 'role', 'created_at', 'is_verified')
+
+class PostSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Post
+        fields = '__all__'
